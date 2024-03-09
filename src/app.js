@@ -16,7 +16,7 @@ app.use(cookieParser())
 
 
 // import router 
-import userRouters from "./routes/user.routers"
+import userRouters from "./routes/user.routes.js"
 
 
 // route declearation 
