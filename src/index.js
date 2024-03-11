@@ -4,8 +4,11 @@ const app = express()
 
 import connectDb from "./db/index.js";
 
-dotenv.config({path: "./env"})
+dotenv.config({path: "./.env"})
 
+// app.get("/user",()=> {
+//     console.log("user");
+// })
 connectDb()
 .then(() => {
     app.listen(process.env.PORT || 8000, () => {

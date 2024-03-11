@@ -5,6 +5,9 @@ import {uploadOnCloudinary} from "../utils/cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
 
 const registerUser = asynchHandlers (async (req, res) => {
+    // return res.status(200).json({
+    //     message: "OK"
+    // })
 
     
 
@@ -23,7 +26,7 @@ const registerUser = asynchHandlers (async (req, res) => {
 
 
 const {fullName, email, userName, password} = req.body 
-console.log("email:", email)
+// console.log("email:", email)
 if(
     [
         fullName, email, password, userName
@@ -34,7 +37,7 @@ if(
         400, "all dield required")
 }
 
-const existedUser = User.findOne({
+const existedUser = await User.findOne({
     $or: [{userName}, {email}]
 })
 
@@ -42,7 +45,7 @@ if(existedUser){
     throw new ApiError(
         409,"User with email or username already exists")
 }
-
+console.log(req.files)
 const avatarLocalPath = req.files?.avatar[0]?.path;
 const coverImageLocalPath = req.files?.coverImage[0]?.path;
 
